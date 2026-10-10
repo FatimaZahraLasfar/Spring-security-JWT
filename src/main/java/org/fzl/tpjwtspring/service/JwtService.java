@@ -31,4 +31,22 @@ public class JwtService {
                 .signWith(getSecretKey())
                 .compact();
     }
+    public String extractUserName(String token){
+        return extractAllClaimsFromToken(token).getSubject();
+    }
+    public Claims extractAllClaimsFromToken(String token){
+        return Jwts.parser()
+                .verifyWith(getSecretKey())
+                .build()
+                .parseClaimsJws(token)
+                .getPayload();
+    }
+    public boolean isTokenValid(String token, UserDetails userDetails){
+        String userName = extractUserName(token);
+        return userDetails.getUsername().equalsIgnoreCase(userName);
+    }
+    public boolean isTokenExpired(String token){
+        Date expiration =  extractAllClaimsFromToken(token).getExpiration();
+        return expiration.before(new Date());
+    }
 }
