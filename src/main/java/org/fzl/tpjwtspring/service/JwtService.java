@@ -1,5 +1,6 @@
 package org.fzl.tpjwtspring.service;
 
+import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
@@ -13,9 +14,9 @@ import java.util.Date;
 @Service
 public class JwtService {
 
-    @Value("${wt.secret}")
+    @Value("${jwt.secret}")
     private String jwtSecret;
-    @Value("${jwt.expiraton}")
+    @Value("${jwt.expiration}")
     private Long jwtExpiration;
 
     private SecretKey getSecretKey (){
@@ -43,7 +44,7 @@ public class JwtService {
     }
     public boolean isTokenValid(String token, UserDetails userDetails){
         String userName = extractUserName(token);
-        return userDetails.getUsername().equalsIgnoreCase(userName);
+        return userDetails.getUsername().equalsIgnoreCase(userName) && !isTokenExpired(token); // Ajout de la vérification d'expiration
     }
     public boolean isTokenExpired(String token){
         Date expiration =  extractAllClaimsFromToken(token).getExpiration();
