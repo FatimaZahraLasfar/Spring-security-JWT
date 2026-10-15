@@ -67,12 +67,14 @@ The base path for the authentication API is `/api/auth`.
 ### 1. Register a New User
 
 Creates a new user account and returns a JWT upon successful registration.
+<img width="892" height="697" alt="Screenshot 2026-10-10 200409" src="https://github.com/user-attachments/assets/5eb8de10-e354-4629-943f-680c1c027281" />
+
 
 *   **Endpoint:** `POST /api/auth/register`
 *   **Request Body:**
     ```json
     {
-      "email": "user@example.com",
+      "email": "test@example.com",
       "password": "password123"
     }
     ```
@@ -84,6 +86,8 @@ Creates a new user account and returns a JWT upon successful registration.
     ```
 
 ### 2. Authenticate a User (Login)
+<img width="887" height="680" alt="Screenshot 2026-10-10 200425" src="https://github.com/user-attachments/assets/bbdf1474-0eec-410d-9de6-fae6b6fcf23b" />
+
 
 Authenticates a user with their email and password and returns a JWT.
 
@@ -91,7 +95,7 @@ Authenticates a user with their email and password and returns a JWT.
 *   **Request Body:**
     ```json
     {
-      "email": "user@example.com",
+      "email": "test@example.com",
       "password": "password123"
     }
     ```
@@ -103,6 +107,8 @@ Authenticates a user with their email and password and returns a JWT.
     ```
 
 ### 3. Access a Protected Resource
+<img width="891" height="657" alt="Screenshot 2026-10-10 200515" src="https://github.com/user-attachments/assets/91371745-8144-4c5e-8583-302b37e7272f" />
+
 
 An example of a protected endpoint that requires a valid JWT for access.
 
